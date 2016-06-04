@@ -1,0 +1,27 @@
+<h2>Create new user!</h2>
+
+<%= render "shared/errors" %>
+
+<form action=" <%= users_url %> " method="post">
+<%= render "shared/auth_token" %>
+
+<label>Username:
+  <input type="text"
+        name="user[username]"
+        value="<%= @user.username %>">
+</label>
+
+<br>
+
+<label>Password:
+  <input type="password"
+        name="user[password]"
+        value="<%= @user.password %>">
+</label>
+
+<br>
+
+  <input type="submit">
+</form>
+
+<%= link_to "Already a user? Login here!", new_session_url %>

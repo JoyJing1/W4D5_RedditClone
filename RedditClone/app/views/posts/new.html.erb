@@ -1,0 +1,44 @@
+<h2>Create new post!</h2>
+
+<%= render "shared/errors" %>
+
+<form action="<%= posts_url %>" method="post">
+  <%= render "shared/auth_token" %>
+
+  <label>Title:
+    <input type="text"
+          name="post[title]"
+          value="<%= @post.title %>">
+  </label>
+
+  <br>
+
+  <label>Url:
+    <input type="text"
+          name="post[url]"
+          value="<%= @post.url %>">
+  </label>
+
+  <br>
+
+  <label>Content:
+    <input type="textarea"
+          name="post[content]"
+          value="<%= @post.content %>">
+  </label>
+
+  <br>
+
+  <label>Subs:<br>
+    <% @subs.each do |sub| %>
+      <label> <%= sub.title %> </label>
+      <input type="checkbox"
+              name="post[sub_ids][]"
+              value="<%= sub.id %>" > <br>
+    <% end %>
+
+  </label>
+  <br>
+
+  <input type="submit" >
+</form>

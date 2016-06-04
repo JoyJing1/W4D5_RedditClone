@@ -1,0 +1,24 @@
+<h2>Sub Title: <%= @sub.title %></h2>
+
+<% moderator = User.find(@sub.moderator_id) %>
+
+<p>Description:
+  <%= @sub.description %> <br> <br>
+  Moderator: <%= moderator.username %> <br>
+
+<h2>Posts:</h2>
+
+<ol>
+  <% @sub.posts.each do |post| %>
+    <li> <%= link_to post.title, post_url(post) %> </li>
+  <% end  %>
+</ol>
+
+  <% if current_user == moderator %>
+    <%= link_to "Edit Sub", edit_sub_url(@sub) %> <br>
+    <%= link_to "Delete Sub", sub_url(@sub), method: :delete %> <br>
+  <% end %>
+  <%= link_to "All Subs", subs_url %>
+</p>
+
+<%= link_to "Create new post!", new_post_url(sub_id: "#{@sub.id}")  %>

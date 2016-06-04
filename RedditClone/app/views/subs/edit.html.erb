@@ -1,0 +1,21 @@
+<h2>Edit Sub</h2>
+
+<%= render "shared/errors" %>
+
+<form action="<%= sub_url(@sub) %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <%= render "shared/auth_token" %>
+
+  <label>Title:
+    <input type="text" name="sub[title]" value="<%= @sub.title %>">
+  </label>
+  <br>
+
+  <label>Description:
+    <input type="textarea" name="sub[description]" value="<%= @sub.description %>">
+  </label>
+  <br>
+
+  <input type="submit" value="Submit Changes">
+
+</form>

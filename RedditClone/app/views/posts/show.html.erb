@@ -1,0 +1,43 @@
+<h2>Post Title: <%= @post.title %></h2>
+<p> Author: <%=@post.author.username %>
+</p>
+
+<label>Subs:
+  <ul>
+  <% @post.subs.each do |sub| %>
+    <li> <%= sub.title %> </li>
+  <% end %>
+ </ul>
+</label>
+
+<p>Content: <%= @post.content %></p>
+
+<p>URL: <%= @post.url %></p>
+
+<p>Last updated: <%=@post.updated_at %></p>
+
+Comments:<br>
+<% @post.comments.each do |comment| %>
+  <% next unless comment.parent_comment_id.nil? %>
+  <hr>
+  <%= render 'comment', comment: comment %>
+  <!-- <p><%= comment.content %></p>
+  <%= link_to "Add Comment", new_comment_url(post_id: "#{@post.id}", parent_comment_id: comment.id) %> -->
+
+  <% if comment.child_comments %>
+    <ul>
+    <% comment.child_comments.each do |c2| %>
+      <li><%= c2.content %></li>
+    <% end %>
+    </ul>
+  <% end %>
+<% end %>
+
+<%= link_to "All Subs", subs_url %> <br>
+
+<% if current_user && current_user.id == @post.author_id %>
+  <%= link_to "Edit post", edit_post_url(@post) %> <br>
+  <%= link_to "Delete Post", post_url(@post), method: :delete %><br>
+<% end %>
+
+<%= link_to "Make a Comment", new_comment_url(post_id: "#{@post.id}")  %>

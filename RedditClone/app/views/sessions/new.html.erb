@@ -1,0 +1,20 @@
+<h2>Login Here</h2>
+
+<%= render "shared/errors" %>
+
+<form action="<%= session_url %>" method="post">
+  <label>Username:
+    <input type="text" name="user[username]">
+  </label>
+  <br>
+
+  <label>Password:
+    <input type="password" name="user[password]">
+  </label>
+  <br>
+
+  <input type="submit" name="Login">
+  <br><br>
+</form>
+
+<%= link_to "Not a user yet? Sign up here!", new_user_url %>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RedditClone</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <h1>Joy and Kat's Reddit Clone</h1>
+  <img src="https://camo.githubusercontent.com/a8ddd4b04a419d346460e37015bc3aa674f8cf42/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3732313033382f313732383830382f35623231353734382d363262352d313165332d393932362d3435623138386635393163642e706e67" alt="reddit icon" height="100" width="70"/>
+  <img src="https://camo.githubusercontent.com/a8ddd4b04a419d346460e37015bc3aa674f8cf42/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3732313033382f313732383830382f35623231353734382d363262352d313165332d393932362d3435623138386635393163642e706e67" alt="reddit icon" height="100" width="70"/>
+
+<%= yield %>
+
+<br><br>
+<% unless current_user.nil? %>
+  You're logged in as, <%= current_user.username %>. <br>
+  <%= button_to "Log out!", session_url, method: :delete %>
+<% end %>
+</body>
+</html>
+
+
+<!-- <%#= button_to "Sign in", new_session_url %> <br>
+<%= button_to "Sign up", new_user_url, method: :get %> -->
